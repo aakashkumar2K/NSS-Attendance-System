@@ -4,16 +4,11 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Login from './Components/Login';
 import Home from './Components/Home';
 import CustomNavbar from './Components/Partial/Navbar';
-// import AddAdmin from './Components/Admin/AddAdmin';
 import ShowAdmins from './Components/Admin/ShowAdmins';
-// import ShowAdmin from './Components/Admin/ShowAdmin';
-// import AddUser from './Components/User/AddUser';
 import ShowUsers from './Components/User/ShowUsers';
-// import ShowUser from './Components/User/ShowUser';
 import AddEvent from './Components/Event/AddEvent';
 import CurrentEvent from './Components/Event/CurrentEvents';
 import PastEvent from './Components/Event/PastEvents';
-// import ShowEvent from './Components/Event/ShowEvent';
 import ShowCurrentEvent from './Components/Event/ShowCurrentEvent';
 import ShowPastEvent from './Components/Event/ShowPastEvent';
 import NotFound404 from './Components/NotFound404'
@@ -27,7 +22,7 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const[isAdmin1, setIsAdmin1] = useState(false);
   const[isAdmin2, setIsAdmin2] = useState(false);
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAuthStatus = async () => {
@@ -46,7 +41,7 @@ const App = () => {
         setIsAdmin2(true);
       }
 
-      // setLoading(false);
+      setLoading(false);
     };
 
 

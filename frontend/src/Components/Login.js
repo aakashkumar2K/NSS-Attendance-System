@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import Home from './Home';
-import { backend_url } from './services';
-
+import React, { useState } from "react";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import Home from "./Home";
+import { backend_url } from "./services";
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleEmailChange = (e) => {
@@ -21,20 +20,19 @@ function Login() {
     e.preventDefault();
 
     try {
- 
       // First check if any user already logged in or not
-      const token = localStorage.getItem('token'); 
+      const token = localStorage.getItem("token");
 
-      if(token !== null && token !== "null"){
+      if (token !== null && token !== "null") {
         console.log("Not Empty", token, typeof token);
         alert("First Logout current User then try to login");
         return;
       }
 
       const response = await fetch(`${backend_url}/login`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
@@ -43,15 +41,13 @@ function Login() {
 
       if (data.success) {
         const token = data.token;
-        localStorage.setItem('token', token);
+        localStorage.setItem("token", token);
         setIsLoggedIn(true);
-      } 
-      else {
+      } else {
         setIsLoggedIn(false);
       }
-    } 
-    catch (error) {
-      console.error('Error:', error);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
@@ -72,7 +68,7 @@ function Login() {
                 placeholder="Enter email"
                 value={email}
                 onChange={handleEmailChange}
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
               />
             </Form.Group>
 
@@ -83,7 +79,7 @@ function Login() {
                 placeholder="Enter password"
                 value={password}
                 onChange={handlePasswordChange}
-                style={{ width: '100%' }}
+                style={{ width: "100%" }}
               />
             </Form.Group>
 

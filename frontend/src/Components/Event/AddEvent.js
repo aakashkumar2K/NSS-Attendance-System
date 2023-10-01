@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 // import Home from '../Home';
-import moment from 'moment-timezone';
-import { backend_url } from '../services';
-
-
+import moment from "moment-timezone";
+import { backend_url } from "../services";
 
 const NewEventForm = () => {
-  const [name, setName] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [endDate, setEndDate] = useState('');
+  const [name, setName] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [formError, setFormError] = useState('');
+  const [formError, setFormError] = useState("");
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -29,25 +27,33 @@ const NewEventForm = () => {
     e.preventDefault();
 
     if (!name || !startDate || !endDate) {
-      setFormError('Please fill in all fields.');
+      setFormError("Please fill in all fields.");
       return;
     }
 
     // Convert start and end dates to Indian Standard Time (IST)
     const indiaTimeZone = "Asia/Kolkata";
     const format = "YYYY-MM-DDTHH:mm";
-    const convertedStartDate = moment.tz(startDate, format, indiaTimeZone).format();
+    const convertedStartDate = moment
+      .tz(startDate, format, indiaTimeZone)
+      .format();
     const convertedEndDate = moment.tz(endDate, format, indiaTimeZone).format();
 
-    console.log("date time : " + convertedStartDate + " to " + convertedEndDate);
+    console.log(
+      "date time : " + convertedStartDate + " to " + convertedEndDate
+    );
 
     try {
       const response = await fetch(`${backend_url}/addEvent`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, startDate: convertedStartDate, endDate: convertedEndDate }),
+        body: JSON.stringify({
+          name,
+          startDate: convertedStartDate,
+          endDate: convertedEndDate,
+        }),
       });
 
       const data = await response.json();
@@ -58,13 +64,13 @@ const NewEventForm = () => {
         setIsLoggedIn(false);
       }
     } catch (error) {
-      console.error('Error creating event:', error);
+      console.error("Error creating event:", error);
     }
   };
 
   if (isLoggedIn) {
-    window.location.href = '/';
-  } 
+    window.location.href = "/";
+  }
 
   return (
     <Container>
