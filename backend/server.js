@@ -357,13 +357,16 @@ router.get("/showEvents", async (req, res) => {
   try {
     if (eventData) {
       res.json(eventData);
-    } else {
+    } 
+    else 
+    {
       res.json([]);
     }
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 router.post("/takeAttendance", async (req, res) => {
   try {
