@@ -19,8 +19,8 @@ const moment = require("moment-timezone");
 // Assuming you have the necessary imports and setup for the Event model
 
 // Generate a secure secret key
-const secretKey = crypto.randomBytes(32).toString("hex");
-// const secretKey = 'a04b56a4c97170248f93baad05b3b7018e2a7bb0ae444fa4780047103c83e0a1';
+const secretKey = process.env.secretKey;
+
 
 // Middlewares
 app.use(express.json());
