@@ -13,6 +13,9 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const MONGOURI = process.env.MONGOURI;
+
+console.log(MONGOURI);
+
 const Connection = () => {
   mongoose.set("strictQuery", true);
 
@@ -22,6 +25,6 @@ const Connection = () => {
       useNewUrlParser: true,
     })
     .then(() => console.log("connection successfull .."))
-    .catch((err) => console.log("error is", err));
+    .catch((err) => console.log("error is ----- >>>>> ------ \n", err));
 };
 Connection();
